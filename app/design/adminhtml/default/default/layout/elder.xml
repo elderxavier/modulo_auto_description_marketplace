@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout>
+    <elder_adminhtml_myform_index>
+        <update handle="elder_myform_index"/>
+        <reference name="content">
+            <block type="adminhtml/template" name="myform" template="elder/myform.phtml"/>
+        </reference>
+    </elder_adminhtml_myform_index>
+</layout>

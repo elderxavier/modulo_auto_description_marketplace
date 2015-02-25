@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mage_Magmi>
+            <version>0.1.0</version>
+        </Mage_Magmi>
+    </modules>
+    
+    <global>
+        <models>
+            <magmi>
+                <class>Mage_Magmi_Model</class>
+                <resourceModel>magmi_mysql4</resourceModel>
+            </magmi>
+            <magmi_mysql4>
+                <class>Mage_Magmi_Model_Mysql4</class>
+            </magmi_mysql4>
+        </models>
+        <blocks>
+            <magmi>
+                <class>Mage_Magmi_Block</class>
+            </magmi>
+        </blocks>
+        <helpers>
+            <magmi>
+                <class>Mage_Magmi_Helper</class>
+            </magmi>  
+        </helpers>
+    </global>
+    
+    <admin>
+        <routers>
+            <magmi>
+                <use>admin</use>
+                <args>
+                    <module>Mage_Magmi</module>
+                    <frontName>magmi</frontName>
+                </args>
+            </magmi>
+        </routers>
+    </admin>
+    
+    <adminhtml>
+        <translate>
+            <modules>
+                <mage_adminhtml>
+                    <files>
+                        <magmi>Mage_Magmi.csv</magmi>
+                    </files>
+                </mage_adminhtml>
+            </modules>
+        </translate>
+        
+        <menu>
+            <catalog>
+                <children>
+                    <magmi_adminform translate="title" module="magmi">
+                        <title> Importador de Produtos</title>
+                        <action>magmi/adminhtml_myform</action>
+                    </magmi_adminform>
+                </children>
+            </catalog>
+        </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <catalog>
+                            <children>
+                                <magmi_adminform>
+                                    <title>Importador de Produtos</title>
+                                </magmi_adminform>
+                            </children>
+                        </catalog>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        
+        <layout>
+            <updates>
+                <magmi>
+                    <file>magmi.xml</file>
+                </magmi>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

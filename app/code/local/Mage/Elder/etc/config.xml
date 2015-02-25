@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mage_Elder>
+            <version>0.1.0</version>
+        </Mage_Elder>
+    </modules>
+    
+    <global>
+        <models>
+            <elder>
+                <class>Mage_Elder_Model</class>
+                <resourceModel>elder_mysql4</resourceModel>
+            </elder>
+            <elder_mysql4>
+                <class>Mage_Elder_Model_Mysql4</class>
+            </elder_mysql4>
+        </models>
+        <blocks>
+            <elder>
+                <class>Mage_Elder_Block</class>
+            </elder>
+        </blocks>
+        <helpers>
+            <elder>
+                <class>Mage_Elder_Helper</class>
+            </elder>  
+        </helpers>
+		<!--
+		<observers>
+            <elder>
+                <class>Mage_Elder_Observer</class>
+            </elder>  
+        </observers>
+		-->
+		<events>            						
+			
+			<!--
+			<catalog_product_save_before>
+				<observers>
+					<elder_attr>						
+						<class>elder/observer</class>
+						<method>catalog_product_save</method>
+					</elder_attr>
+				</observers>
+			</catalog_product_save_before>
+			-->
+			
+			
+			<catalog_product_save_after>
+				<observers>
+					<elder_attr>						
+						<class>elder/observer</class>
+						<method>catalog_product_save_toafter</method>
+					</elder_attr>
+				</observers>
+			</catalog_product_save_after>			
+			
+			
+		</events>	
+		
+    </global>
+    
+    <admin>
+        <routers>
+            <elder>
+                <use>admin</use>
+                <args>
+                    <module>Mage_Elder</module>
+                    <frontName>elder</frontName>
+                </args>
+            </elder>
+        </routers>
+    </admin>
+    
+    <adminhtml>
+        <translate>
+            <modules>
+                <mage_adminhtml>
+                    <files>
+                        <elder>Mage_Elder.csv</elder>
+                    </files>
+                </mage_adminhtml>
+            </modules>
+        </translate>
+        
+        <menu>
+            <catalog>				
+                <children>
+                    <elder_adminform translate="title" module="elder">
+                        <title> Importar Atributo Marketplace csv (Manual)</title>
+                        <action>elder/adminhtml_myform</action>
+                    </elder_adminform>
+                </children>
+            </catalog>
+			
+			
+		
+		</menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <catalog>
+                            <children>
+                                <elder_adminform>
+                                    <title>Atualiza Campo</title>
+                                </elder_adminform>
+                            </children>
+                        </catalog>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        
+        <layout>
+            <updates>
+                <elder>
+                    <file>elder.xml</file>
+                </elder>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>
